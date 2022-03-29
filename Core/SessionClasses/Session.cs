@@ -10,12 +10,14 @@ namespace Core
         public User SessionHost{ get; private set; }
         public List<User> Players { get; private set; }
         public int PlayerMaxCount { get; private set; }
+        private bool StatusOfActivity { get; set; }
 
         public Session(User host, int maxcount)
         {
             SessionHost = host;
             PlayerMaxCount = maxcount;
             Players = new List<User>();
+            StatusOfActivity = true;
         }
 
         public void Connect(User player)
@@ -30,20 +32,47 @@ namespace Core
             }
         }
 
-        public override string ToString()
+        public void Leave(User player)
         {
-            string mes = $"Session host: {SessionHost.Name};\n" +
-                   $"User max count: {PlayerMaxCount};\n" +
-                   $"Players: ";
-
-            foreach (var u in Players)
+            if (player != SessionHost)
             {
-                mes += $"{u.Name}, ";
+                Players.Remove(player);
+            }
+            else
+            {
+                Players.Clear();
+                SessionDisable();
             }
 
-            mes.Substring(mes.Length);
+        }
 
-            return String.Concat(mes, ";");
+        public void SessionDisable()
+        {
+            StatusOfActivity = false;
+        }
+
+        public override string ToString()
+        {
+            if (!StatusOfActivity)
+            {
+                return "Room is already Disabled";
+            }
+            else
+            {
+                string mes = $"Session host: {SessionHost.Name};\n" +
+                             $"User max count: {PlayerMaxCount};\n" +
+                             $"Players: ";
+
+                foreach (var u in Players)
+                {
+                    mes += $"{u.Name}, ";
+                }
+
+                mes.Substring(mes.Length);
+
+                return String.Concat(mes, $";\n\n");
+            }
+
         }
 
         
