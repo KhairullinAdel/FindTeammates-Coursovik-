@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Finder.Core\Finder_Core.csproj" />
   </ItemGroup>
 
 </Project>

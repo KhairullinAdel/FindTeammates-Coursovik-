@@ -1,5 +1,5 @@
 ﻿using System;
-using Core;
+using Finder_Core;
 
 namespace DebugCosole
 {
