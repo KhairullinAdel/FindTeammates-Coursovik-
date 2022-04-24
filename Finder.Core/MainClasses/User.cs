@@ -35,5 +35,9 @@ namespace Finder_Core
         {
             return this.Socials;
         }
+        internal void SetID(int newId)
+        {
+            this.ID = newId;
+        }
     }
 }

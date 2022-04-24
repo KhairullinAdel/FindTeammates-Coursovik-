@@ -14,6 +14,7 @@ namespace Finder_Core.FireBase
         public static void UserSave(User user)
         {
             int id = GetUsers().Count();
+            user.SetID(id);
             FirebaseResponse response = FBaseConfig.client.Update("Users/" + id, user);
             User obj = response.ResultAs<User>();
         }
