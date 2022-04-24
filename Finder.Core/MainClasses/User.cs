@@ -7,13 +7,17 @@ namespace Finder_Core
 {
     public class User
     {
-        public int ID { get; private set; }
+        public int ID { get; set; }
         public string Name { get; private set; }
         public string Email { get; private set; }
         public int Level { get; private set; }
         public int XP { get; private set; }
         public Dictionary<string, string> Socials { get; private set; }
 
+        public User()
+        {
+
+        }
         public User(string username, string email)
         {
             Name = username;

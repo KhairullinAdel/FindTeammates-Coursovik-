@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FireBase\FBaseConfig.cs" />
+    <Compile Include="FireBase\FBaseUser.cs" />
+    <Compile Include="FireBase\OutputUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainClasses\Session.cs" />
     <Compile Include="MainClasses\User.cs" />
