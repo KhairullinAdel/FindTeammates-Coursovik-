@@ -29,15 +29,23 @@ namespace Finder_WPF
 
         private void SaveNewUser(object sender, RoutedEventArgs e)
         {
-            try
+            if (UserPasswordBox.Password == ConfirmPasswordBox.Password)
             {
-                User user = new User(UserNameBox.Text, LoginBox.Text, UserPasswordBox.Password);
-                DataAccess.UserSave(user);
-                MessageBox.Show("Creating new user is success");
+                try
+                {
+                    User user = new User(UserNameBox.Text, LoginBox.Text, UserPasswordBox.Password);
+                    DataAccess.UserSave(user);
+                    MessageBox.Show("Creating new user is success");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("IncorrectData. Try again please");
+                }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("IncorrectData. try again please");
+                MessageBox.Show("Passwords don't match");
+                ConfirmPasswordBox.Password = "";
             }
             
         }
