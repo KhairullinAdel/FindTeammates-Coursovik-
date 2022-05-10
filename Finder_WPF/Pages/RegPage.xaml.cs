@@ -35,7 +35,7 @@ namespace Finder_WPF
             user.AddSocials("Discordq", "adadsadas");
             user.AddSocials("Discorqd", "adadsadas");
 
-            FBaseUser.UserSave(user);
+            FBaseConfig.UserSave(user);
 
             MessageBox.Show("Creating new user is success");
         }
