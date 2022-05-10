@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
+using Finder_Core.FireBase;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace Finder_Core
 {
     public class User
     {
-        public int ID { get; set; }
         public string Name { get; private set; }
         public string Email { get; private set; }
+        public string Password { get; private set; }
         public int Level { get; private set; }
         public int XP { get; private set; }
         public Dictionary<string, string> Socials { get; private set; }
@@ -18,10 +22,11 @@ namespace Finder_Core
         {
 
         }
-        public User(string username, string email)
+        public User(string username, string email, string password)
         {
             Name = username;
             Email = email;
+            Password = this.GetHash(password);
             Level = 0;
             Socials = new Dictionary<string, string>();
         }
@@ -35,9 +40,18 @@ namespace Finder_Core
         {
             return this.Socials;
         }
-        internal void SetID(int newId)
+
+        private string GetHash(string input)
         {
-            this.ID = newId;
+            var md5 = MD5.Create();
+            var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            return Convert.ToBase64String(hash);
+        }
+
+        public void UserRegistration(User user)
+        {
+            DataAccess.UserSave(user);
         }
     }
 }

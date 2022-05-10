@@ -29,15 +29,17 @@ namespace Finder_WPF
 
         private void SaveNewUser(object sender, RoutedEventArgs e)
         {
-            User user = new User(UserNameBox.Text, LoginBox.Text);
-
-            user.AddSocials("Discord", "adadsadas");
-            user.AddSocials("Discordq", "adadsadas");
-            user.AddSocials("Discorqd", "adadsadas");
-
-            FBaseConfig.UserSave(user);
-
-            MessageBox.Show("Creating new user is success");
+            try
+            {
+                User user = new User(UserNameBox.Text, LoginBox.Text, UserPasswordBox.Password);
+                DataAccess.UserSave(user);
+                MessageBox.Show("Creating new user is success");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("IncorrectData. try again please");
+            }
+            
         }
     }
 }

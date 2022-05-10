@@ -17,6 +17,8 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
                    VerticalAlignment="Center"
@@ -28,19 +30,38 @@
                    HorizontalAlignment="Center"
                    FontSize="40"
                    Text="Username"/>
-
+        <TextBlock Grid.Row="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="40"
+                   Text="Password"/>
+        <TextBlock Grid.Row="3"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="40"
+                   Text="ConfirmPassword"/>
+        
         <TextBox Grid.Row="0" 
-                 Margin="30"
+                 Margin="20"
                  Grid.Column="1"
                  x:Name="LoginBox"/>
         <TextBox Grid.Row="1"
-                 Margin="30"
+                 Margin="20"
                  Grid.Column="1"
                  x:Name="UserNameBox"/>
-        <Button Grid.Row="2"
+        <PasswordBox Grid.Row="2"
+                 Margin="20"
+                 Grid.Column="1"
+                 x:Name="UserPasswordBox"/>
+        <PasswordBox Grid.Row="3"
+                 Margin="20"
+                 Grid.Column="1"
+                 x:Name="ConfirmPasswordBox"/>
+        
+        <Button Grid.Row="4"
                 Grid.ColumnSpan="2" 
                 Content="Save"
-                Margin="30"
+                Margin="20"
                 FontSize="30"
                 Click="SaveNewUser"/>
 

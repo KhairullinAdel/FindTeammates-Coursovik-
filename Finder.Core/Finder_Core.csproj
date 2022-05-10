@@ -186,6 +186,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FireBase\DataAccess.cs" />
     <Compile Include="FireBase\FBaseConfig.cs" />
     <Compile Include="FireBase\OutputUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
