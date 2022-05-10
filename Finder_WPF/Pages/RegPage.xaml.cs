@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Finder_Core;
 using Finder_Core.FireBase;
+using Finder_WPF.Pages;
 
 namespace Finder_WPF
 {
@@ -29,25 +30,27 @@ namespace Finder_WPF
 
         private void SaveNewUser(object sender, RoutedEventArgs e)
         {
-            if (UserPasswordBox.Password == ConfirmPasswordBox.Password)
+            try
             {
-                try
+                DataAccess.GetUser(LoginBox.Text);
+                MessageBox.Show("this login has already used");
+                LoginBox.Text = "";
+            }
+            catch
+            {
+                if (UserPasswordBox.Password == ConfirmPasswordBox.Password)
                 {
                     User user = new User(UserNameBox.Text, LoginBox.Text, UserPasswordBox.Password);
-                    DataAccess.UserSave(user);
-                    MessageBox.Show("Creating new user is success");
+                    NavigationService.Navigate(new SocialsAddPage(user));
                 }
-                catch (Exception)
+                else
                 {
-                    MessageBox.Show("IncorrectData. Try again please");
+                    MessageBox.Show("Passwords don't match");
+                    ConfirmPasswordBox.Password = "";
                 }
-            }
-            else
-            {
-                MessageBox.Show("Passwords don't match");
-                ConfirmPasswordBox.Password = "";
             }
             
         }
+
     }
 }
