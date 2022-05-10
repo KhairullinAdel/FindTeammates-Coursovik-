@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using Finder_Core;
 using Finder_Core.FireBase;
 using Finder_WPF.Pages;
@@ -30,26 +31,20 @@ namespace Finder_WPF
 
         private void SaveNewUser(object sender, RoutedEventArgs e)
         {
-            try
+            if (UserPasswordBox.Password == ConfirmPasswordBox.Password)
             {
-                DataAccess.GetUser(LoginBox.Text);
-                MessageBox.Show("this login has already used");
-                LoginBox.Text = "";
+                User user = new User(UserNameBox.Text, LoginBox.Text, UserPasswordBox.Password);
+                NavigationService.Navigate(new SocialsAddPage(user));
             }
-            catch
+            else
             {
-                if (UserPasswordBox.Password == ConfirmPasswordBox.Password)
-                {
-                    User user = new User(UserNameBox.Text, LoginBox.Text, UserPasswordBox.Password);
-                    NavigationService.Navigate(new SocialsAddPage(user));
-                }
-                else
-                {
-                    MessageBox.Show("Passwords don't match");
-                    ConfirmPasswordBox.Password = "";
-                }
+                MessageBox.Show("Passwords don't match");
+                ConfirmPasswordBox.Password = "";
             }
-            
+        }
+        private void ToAuthPage(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new LoginPage());
         }
 
     }

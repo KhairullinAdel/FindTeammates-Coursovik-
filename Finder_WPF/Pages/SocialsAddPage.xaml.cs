@@ -45,8 +45,14 @@ namespace Finder_WPF.Pages
             }
             catch (Exception)
             {
-                MessageBox.Show("IncorrectData. Try again please");
+                MessageBox.Show("This login is already used");
+                NavigationService.GoBack();
             }
+        }
+
+        private void GoBackToRegPage(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

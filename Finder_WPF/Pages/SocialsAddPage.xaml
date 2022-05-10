@@ -21,7 +21,8 @@
         </Grid.RowDefinitions>
 
         <Button Content="Back"
-                Margin="20, 20, 250, 20"/>
+                Margin="20, 20, 250, 20"
+                Click="GoBackToRegPage"/>
 
         <TextBlock Text="Add one of socials"
                    VerticalAlignment="Center"
