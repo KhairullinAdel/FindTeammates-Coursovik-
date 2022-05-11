@@ -14,8 +14,8 @@ namespace Finder_Core.FireBase
     {
         internal static IFirebaseConfig config = new FirebaseConfig()
         {
-            AuthSecret = "Oq74Wtm31h2KJQv4fqHgwIQTt7jhaODV4tDKc3eS",
-            BasePath = "https://findteammateapplication-default-rtdb.firebaseio.com/"
+            AuthSecret = ConnectionConstant.AuthSecret,
+            BasePath = ConnectionConstant.BasePath,
         };
 
         internal static IFirebaseClient client = new FireSharp.FirebaseClient(config);
