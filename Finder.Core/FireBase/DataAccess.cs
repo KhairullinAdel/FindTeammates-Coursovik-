@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Newtonsoft.Json;
 
 namespace Finder_Core.FireBase
 {
@@ -18,11 +19,24 @@ namespace Finder_Core.FireBase
             FirebaseResponse response = FBaseConfig.client.Update("Users/" + user.Email, user);
             User obj = response.ResultAs<User>();
         }
-        public static IEnumerable<User> GetUsers()
+        public static Dictionary<string, User> GetUsers()
         {
+            Dictionary<string, User> users;
+            Dictionary<string, User> outgoingUsers = new Dictionary<string, User>();
+
             FirebaseResponse response = FBaseConfig.client.Get("Users/");
-            List<User> obj = response.ResultAs<List<User>>();
-            return obj;
+            string jsonText = response.Body;
+            if (jsonText?.Length > 0)
+            {
+                users = JsonConvert.DeserializeObject<Dictionary<string, User>>(jsonText);
+                foreach (var user in users)
+                {
+                    outgoingUsers.Add(user.Key, DataAccess.GetUser(user.Key));
+                }
+                return outgoingUsers;
+            }
+            return outgoingUsers;
+
         }
         public static User GetUser(string email)
         {

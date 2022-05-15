@@ -38,7 +38,7 @@ namespace Finder_Core
 
         public Dictionary<string, string> GetSocials()
         {
-            return this.Socials;
+            return new Dictionary<string, string>();  //this.Socials;
         }
 
         public string GetHash(string input)
