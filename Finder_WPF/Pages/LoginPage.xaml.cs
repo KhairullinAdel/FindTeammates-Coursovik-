@@ -25,22 +25,21 @@ namespace Finder_WPF.Pages
     public partial class LoginPage : Page
     {
         User loggedUser;
-        User fBaseLoggedUser;
+        Dictionary<string, User> userList;
         public LoginPage()
         {
             InitializeComponent();
+            userList = DataAccess.GetUsers();
         }
 
         private void LoginUser(object sender, RoutedEventArgs e)
         {
-            loggedUser = new User("", LoginBox.Text, UserPasswordBox.Password);
-            try
+            if (userList.ContainsKey(LoginBox.Text))
             {
-                fBaseLoggedUser = DataAccess.GetUser(LoginBox.Text);
-
-                if (loggedUser.GetHash(UserPasswordBox.Password) == fBaseLoggedUser.Password)
+                loggedUser = DataAccess.GetUser(LoginBox.Text);
+                if (loggedUser.GetHash(UserPasswordBox.Password) == loggedUser.Password)
                 {
-                    MessageBox.Show($"{fBaseLoggedUser.Name} is logined");
+                    MessageBox.Show($"{loggedUser.Name} is logined");
                 }
                 else
                 {
@@ -48,7 +47,7 @@ namespace Finder_WPF.Pages
                     UserPasswordBox.Password = "";
                 }
             }
-            catch
+            else
             {
                 MessageBox.Show("There is no user with this login");
             }
