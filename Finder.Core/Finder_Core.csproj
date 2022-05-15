@@ -189,6 +189,7 @@
     <Compile Include="ConnectionConstant.cs" />
     <Compile Include="FireBase\DataAccess.cs" />
     <Compile Include="FireBase\FBaseConfig.cs" />
+    <Compile Include="MainClasses\Community.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainClasses\Session.cs" />
     <Compile Include="MainClasses\User.cs" />

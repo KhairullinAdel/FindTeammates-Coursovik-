@@ -19,9 +19,6 @@ using Finder_WPF.Pages;
 
 namespace Finder_WPF.Pages
 {
-    /// <summary>
-    /// Interaction logic for LoginPage.xaml
-    /// </summary>
     public partial class LoginPage : Page
     {
         User loggedUser;
@@ -51,7 +48,6 @@ namespace Finder_WPF.Pages
             {
                 MessageBox.Show("There is no user with this login");
             }
-
         }
 
         private void ToRegPage(object sender, RoutedEventArgs e)

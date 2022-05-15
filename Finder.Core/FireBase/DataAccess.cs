@@ -36,7 +36,6 @@ namespace Finder_Core.FireBase
                 return outgoingUsers;
             }
             return outgoingUsers;
-
         }
         public static User GetUser(string email)
         {
@@ -46,7 +45,20 @@ namespace Finder_Core.FireBase
         }
         #endregion
 
-        #region
+        #region Communities
+        public static void CommumitySave(Community community)
+        {
+            FirebaseResponse response = FBaseConfig.client.Update("Communities/" + community.Name, community);
+            Community obj = response.ResultAs<Community>();
+        }
+
+        public static Community GetCommunity(string name)
+        {
+            var response = FBaseConfig.client.Get("Communities/" + name);
+            var obj = response.ResultAs<Community>();
+            return obj;
+        }
+
         #endregion
     }
 }
