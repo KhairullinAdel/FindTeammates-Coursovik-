@@ -13,7 +13,7 @@ namespace UnitTestProject
         //TestClass constructor
         public UserTest()
         {
-            user = new User("Bob", "SomeAdress");
+            user = new User("Bob", "SomeAdress", "123");
         }
 
         [TestMethod]

@@ -36,7 +36,7 @@ namespace Finder_WPF.Pages
                 loggedUser = DataAccess.GetUser(LoginBox.Text);
                 if (loggedUser.GetHash(UserPasswordBox.Password) == loggedUser.Password)
                 {
-                    MessageBox.Show($"{loggedUser.Name} is logined");
+                    NavigationService.Navigate(new UserProfilePage(loggedUser));
                 }
                 else
                 {

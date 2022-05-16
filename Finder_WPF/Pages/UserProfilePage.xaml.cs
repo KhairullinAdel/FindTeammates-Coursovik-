@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Finder_Core;
+
 namespace Finder_WPF.Pages
 {
     /// <summary>
@@ -20,9 +22,13 @@ namespace Finder_WPF.Pages
     /// </summary>
     public partial class UserProfilePage : Page
     {
-        public UserProfilePage()
+        public UserProfilePage(User user)
         {
             InitializeComponent();
+
+            Username.Text = user.Name;
+            UserLevel.Text = user.Level.ToString();
+            UserXP.Text = user.XP.ToString();
         }
     }
 }

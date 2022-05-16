@@ -32,16 +32,25 @@ namespace Finder_WPF
         private void SaveNewUser(object sender, RoutedEventArgs e)
         {
             Dictionary<string, User> users = DataAccess.GetUsers();
-            if (UserPasswordBox.Password == ConfirmPasswordBox.Password)
+            if (users.ContainsKey(LoginBox.Text))
             {
-                User user = new User(UserNameBox.Text, LoginBox.Text, UserPasswordBox.Password);
-                NavigationService.Navigate(new SocialsAddPage(user));
+                MessageBox.Show("Please, enter another login");
+                LoginBox.Text = "";
             }
             else
             {
-                MessageBox.Show("Passwords don't match");
-                ConfirmPasswordBox.Password = "";
+                if (UserPasswordBox.Password == ConfirmPasswordBox.Password)
+                {
+                    User user = new User(UserNameBox.Text, LoginBox.Text, UserPasswordBox.Password);
+                    NavigationService.Navigate(new SocialsAddPage(user));
+                }
+                else
+                {
+                    MessageBox.Show("Passwords don't match");
+                    ConfirmPasswordBox.Password = "";
+                }
             }
+            
         }
         private void ToAuthPage(object sender, RoutedEventArgs e)
         {

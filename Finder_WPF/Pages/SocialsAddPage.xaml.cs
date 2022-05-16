@@ -37,17 +37,12 @@ namespace Finder_WPF.Pages
 
         private void RegConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                user.AddSocials(SocialCb.SelectedItem.ToString(), Social.Text);
-                DataAccess.UserSave(user);
-                MessageBox.Show("Creating new user is success");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("This login is already used");
-                NavigationService.GoBack();
-            }
+            user.AddSocials(SocialCb.SelectedItem.ToString(), Social.Text);
+
+            DataAccess.UserSave(user);
+            MessageBox.Show("Creating new user is success");
+
+            NavigationService.Navigate(new UserProfilePage(user));
         }
 
         private void GoBackToRegPage(object sender, RoutedEventArgs e)
