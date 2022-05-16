@@ -26,13 +26,13 @@ namespace Finder_WPF.Pages
         public LoginPage()
         {
             InitializeComponent();
-            userList = DataAccess.GetUsers();
         }
 
         private void LoginUser(object sender, RoutedEventArgs e)
         {
             if (userList.ContainsKey(LoginBox.Text))
             {
+                userList = DataAccess.GetUsers();
                 loggedUser = DataAccess.GetUser(LoginBox.Text);
                 if (loggedUser.GetHash(UserPasswordBox.Password) == loggedUser.Password)
                 {
