@@ -10,22 +10,19 @@ namespace Finder_Core
     {
         public string Name { get; private set; }
         public string OwnerLogin { get; private set; }
-        private HashSet<string> _userlist;
+        public int UsersCount { get; private set; }
 
-        public Community()
-        { 
-            
-        }
-
-        public Community(string name, string ownerLogin)
+        public Community(string name, User owner)
         {
             Name = name;
-            OwnerLogin = ownerLogin;
+            OwnerLogin = owner.Email;
+            UsersCount = 0;
+            owner.JoinToCommunity(this);
         }
 
-        public void JoinToCommunity(string login)
+        public void PlayerJoined()
         {
-            _userlist.Add(login);
+            UsersCount++;
         }
     }
 }

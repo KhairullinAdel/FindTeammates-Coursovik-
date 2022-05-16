@@ -17,11 +17,8 @@ namespace Finder_Core
         public int Level { get; private set; }
         public int XP { get; private set; }
         public Dictionary<string, string> Socials { get; private set; }
+        public HashSet<string> Communities { get; private set; }
 
-        public User()
-        {
-
-        }
         public User(string username, string email, string password)
         {
             Name = username;
@@ -29,6 +26,7 @@ namespace Finder_Core
             Password = this.GetHash(password);
             Level = 0;
             Socials = new Dictionary<string, string>();
+            Communities = new HashSet<string>();
         }
 
         public void AddSocials(string network, string username)
@@ -38,7 +36,7 @@ namespace Finder_Core
 
         public Dictionary<string, string> GetSocials()
         {
-            return new Dictionary<string, string>();  //this.Socials;
+            return this.Socials;
         }
 
         public string GetHash(string input)
@@ -48,5 +46,16 @@ namespace Finder_Core
 
             return Convert.ToBase64String(hash);
         }
+
+        public void JoinToCommunity(Community community)
+        {
+            if (!Communities.Contains(community.Name))
+            {
+                Communities.Add(community.Name);
+                community.PlayerJoined();
+            }
+            
+        }
+
     }
 }
