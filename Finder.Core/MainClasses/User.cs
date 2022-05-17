@@ -51,5 +51,26 @@ namespace Finder_Core
 
             return Convert.ToBase64String(hash);
         }
+        public void JoinToCommunity(Community community)
+        {
+            if (!Communities.Contains(community.Name))
+            {
+                Communities.Add(community.Name);
+                community.PlayerJoined();
+            }
+        }
+
+        public List<Community> GetCommunityList()
+        {
+            List<Community> returned = new List<Community>();
+
+            foreach (var comm in this.Communities)
+            {
+                returned.Add(DataAccess.GetCommunity(comm));
+            }
+
+            return returned;
+        }
+
     }
 }
