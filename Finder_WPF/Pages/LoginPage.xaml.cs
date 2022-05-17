@@ -30,9 +30,9 @@ namespace Finder_WPF.Pages
 
         private void LoginUser(object sender, RoutedEventArgs e)
         {
+            userList = DataAccess.GetUsers();
             if (userList.ContainsKey(LoginBox.Text))
             {
-                userList = DataAccess.GetUsers();
                 loggedUser = DataAccess.GetUser(LoginBox.Text);
                 if (loggedUser.GetHash(UserPasswordBox.Password) == loggedUser.Password)
                 {

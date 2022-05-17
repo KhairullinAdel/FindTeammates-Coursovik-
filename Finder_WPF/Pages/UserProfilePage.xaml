@@ -14,11 +14,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="Header" 
-                        Orientation="Horizontal"
-                        Height="80"
-                        VerticalAlignment="Top"
-                        Margin="20, 0">
-            <StackPanel VerticalAlignment="Center">
+                    Orientation="Horizontal"
+                    Height="100"
+                    VerticalAlignment="Top"
+                    Margin="20, 0">
+            <StackPanel VerticalAlignment="Center"
+                        MinWidth="380">
                 <TextBlock x:Name="Username" 
                            Text="Binding Username"
                            VerticalAlignment="Center"
@@ -28,16 +29,38 @@
                 <TextBlock x:Name="UserXP"
                            Text="Binding XP"/>
             </StackPanel>
+            <StackPanel MinWidth="380"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right">
+                <Button x:Name="CreateComm"
+                        Content="Create new Community"
+                        Click="CreateComm_Click"
+                        MaxWidth="150"/>
+                <TextBlock Text="Or"
+                           HorizontalAlignment="Center"/>
+                <Button x:Name="JoinToComm"
+                        Content="Find some existed"
+                        MaxWidth="150"/>
+            </StackPanel>
         </StackPanel>
-        
+
         <ListView x:Name="GroupList"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   Margin="20, 0"
                   Background="Transparent"
-                  >
+                  ItemsSource="{Binding coms}">
             <ListView.View>
                 <GridView>
-                    
+                    <GridViewColumn Header=""/>
+                    <GridViewColumn Header="Name" 
+                                    DisplayMemberBinding="{Binding Name}"
+                                    Width="150"/>
+                    <GridViewColumn Header="Owner"
+                                    DisplayMemberBinding="{Binding OwnerTag}"
+                                    Width="150"/>
+                    <GridViewColumn Header="Users Count"
+                                    DisplayMemberBinding="{Binding UsersCount}"
+                                    Width="80"/>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Finder_Core;
+using Finder_Core.FireBase;
 
 namespace Finder_WPF.Pages
 {
@@ -22,6 +23,7 @@ namespace Finder_WPF.Pages
     /// </summary>
     public partial class UserProfilePage : Page
     {
+        public Dictionary<string, Community> coms { get; set; }
         public UserProfilePage(User user)
         {
             InitializeComponent();
@@ -29,6 +31,15 @@ namespace Finder_WPF.Pages
             Username.Text = user.Name;
             UserLevel.Text = user.Level.ToString();
             UserXP.Text = user.XP.ToString();
+
+            coms = DataAccess.GetCommunities();
+
+            this.DataContext = this;
+        }
+
+        private void CreateComm_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
