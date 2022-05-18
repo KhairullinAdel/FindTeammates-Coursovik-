@@ -51,7 +51,6 @@
                   ItemsSource="{Binding coms}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header=""/>
                     <GridViewColumn Header="Name" 
                                     DisplayMemberBinding="{Binding Name}"
                                     Width="150"/>

@@ -23,7 +23,7 @@ namespace Finder_WPF.Pages
     /// </summary>
     public partial class UserProfilePage : Page
     {
-        public Dictionary<string, Community> coms { get; set; }
+        public List<Community> coms { get; set; }
         public UserProfilePage(User user)
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace Finder_WPF.Pages
             UserLevel.Text = user.Level.ToString();
             UserXP.Text = user.XP.ToString();
 
-            coms = DataAccess.GetCommunities();
+            coms = DataAccess.GetCommByUser(user);
 
             this.DataContext = this;
         }

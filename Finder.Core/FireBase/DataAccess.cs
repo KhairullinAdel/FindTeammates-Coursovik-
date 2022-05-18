@@ -69,6 +69,19 @@ namespace Finder_Core.FireBase
             return obj;
         }
 
+        public static List<Community> GetCommByUser(User u)
+        {
+            List<Community> returned = new List<Community>();
+
+            foreach (var comm in u.Communities)
+            {
+                returned.Add(GetCommunity(comm));
+            }
+
+            return returned;
+
+        }
+
         #endregion
     }
 }
