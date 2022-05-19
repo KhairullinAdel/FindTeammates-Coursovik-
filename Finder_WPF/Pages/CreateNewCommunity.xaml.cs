@@ -35,5 +35,10 @@ namespace Finder_WPF
             DataAccess.CommumitySave(comm, user);
             NavigationService.Navigate(new UserProfilePage(user));
         }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }
