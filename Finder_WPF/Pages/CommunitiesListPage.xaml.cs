@@ -19,34 +19,23 @@ using Finder_Core.FireBase;
 namespace Finder_WPF
 {
     /// <summary>
-    /// Interaction logic for UserProfilePage.xaml
+    /// Interaction logic for CommunitiesListPage.xaml
     /// </summary>
-    public partial class UserProfilePage : Page
+    public partial class CommunitiesListPage : Page
     {
         public List<Community> coms { get; set; }
         User authorisedUser;
-        public UserProfilePage(User user)
+        public CommunitiesListPage(User user)
         {
             InitializeComponent();
-
-            Username.Text = user.Name;
-            UserLevel.Text = user.Level.ToString();
-            UserXP.Text = user.XP.ToString();
-
-            coms = DataAccess.GetCommByUser(user);
-
+            coms = DataAccess.GetCommunities();
             authorisedUser = user;
             this.DataContext = this;
         }
 
-        private void CreateComm_Click(object sender, RoutedEventArgs e)
+        private void goBackButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CreateNewCommunity(authorisedUser));
-        }
-
-        private void JoinToComm_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new CommunitiesListPage(authorisedUser));
+            NavigationService.GoBack();
         }
     }
 }

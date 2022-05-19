@@ -73,7 +73,7 @@ namespace Finder_Core.FireBase
 
             foreach (var comm in obj)
             {
-                returned.Add(comm.Value);
+                returned.Add(GetCommunity(comm.Key.ToString()));
             }
             return returned;
         }

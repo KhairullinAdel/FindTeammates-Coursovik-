@@ -40,7 +40,8 @@
                            HorizontalAlignment="Center"/>
                 <Button x:Name="JoinToComm"
                         Content="Find some existed"
-                        MaxWidth="150"/>
+                        MaxWidth="150" 
+                        Click="JoinToComm_Click"/>
             </StackPanel>
         </StackPanel>
 
