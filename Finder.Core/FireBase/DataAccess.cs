@@ -46,11 +46,13 @@ namespace Finder_Core.FireBase
         #endregion
 
         #region Communities
-        public static void CommumitySave(Community community)
+        public static void CommumitySave(Community community, User user)
         {
             FirebaseResponse response = 
                 FBaseConfig.client.Update("Communities/" + community.Name, community);
             Community obj = response.ResultAs<Community>();
+
+            UserSave(user);
         }
 
         public static Community GetCommunity(string name)
@@ -60,13 +62,20 @@ namespace Finder_Core.FireBase
             return obj;
         }
 
-        public static Dictionary<string, Community> GetCommunities()
+        public static List<Community> GetCommunities()
         {
             var response = FBaseConfig.client.Get("Communities/");
             Dictionary<string, Community> obj = 
                 JsonConvert.DeserializeObject<Dictionary<string, Community>>
                 (response.Body.ToString());
-            return obj;
+
+            List<Community> returned = new List<Community>();
+
+            foreach (var comm in obj)
+            {
+                returned.Add(comm.Value);
+            }
+            return returned;
         }
 
         public static List<Community> GetCommByUser(User u)
@@ -79,7 +88,6 @@ namespace Finder_Core.FireBase
             }
 
             return returned;
-
         }
 
         #endregion

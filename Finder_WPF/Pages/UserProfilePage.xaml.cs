@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using Finder_Core;
 using Finder_Core.FireBase;
 
-namespace Finder_WPF.Pages
+namespace Finder_WPF
 {
     /// <summary>
     /// Interaction logic for UserProfilePage.xaml
@@ -24,6 +24,7 @@ namespace Finder_WPF.Pages
     public partial class UserProfilePage : Page
     {
         public List<Community> coms { get; set; }
+        User authorisedUser;
         public UserProfilePage(User user)
         {
             InitializeComponent();
@@ -34,12 +35,13 @@ namespace Finder_WPF.Pages
 
             coms = DataAccess.GetCommByUser(user);
 
+            authorisedUser = user;
             this.DataContext = this;
         }
 
         private void CreateComm_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new CreateNewCommunity(authorisedUser));
         }
     }
 }
