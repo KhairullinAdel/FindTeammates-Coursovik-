@@ -37,9 +37,9 @@ namespace Finder_Core.FireBase
             }
             return outgoingUsers;
         }
-        public static User GetUser(string email)
+        public static User GetUser(string userTag)
         {
-            var response = FBaseConfig.client.Get("Users/" + email);
+            var response = FBaseConfig.client.Get("Users/" + userTag);
             var obj = response.ResultAs<User>();
             return obj;
         }

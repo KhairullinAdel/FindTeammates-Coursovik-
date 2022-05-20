@@ -71,6 +71,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\CommunityProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CreateNewCommunity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +99,9 @@
   <ItemGroup>
     <Compile Include="Pages\CommunitiesListPage.xaml.cs">
       <DependentUpon>CommunitiesListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CommunityProfilePage.xaml.cs">
+      <DependentUpon>CommunityProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CreateNewCommunity.xaml.cs">
       <DependentUpon>CreateNewCommunity.xaml</DependentUpon>

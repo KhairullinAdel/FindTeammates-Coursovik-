@@ -59,18 +59,5 @@ namespace Finder_Core
                 community.PlayerJoined();
             }
         }
-
-        public List<Community> GetCommunityList()
-        {
-            List<Community> returned = new List<Community>();
-
-            foreach (var comm in this.Communities)
-            {
-                returned.Add(DataAccess.GetCommunity(comm));
-            }
-
-            return returned;
-        }
-
     }
 }
