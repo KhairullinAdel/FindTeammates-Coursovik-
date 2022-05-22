@@ -15,7 +15,7 @@ namespace UnitTestProject
         //TestClass constructor
         public SessionTest()
         {
-            host = new User("Bob", "SomeAdress");
+            host = new User("Bob", "SomeAdress", "123");
             sess = new Session(host, 1);
         }
 
@@ -28,14 +28,14 @@ namespace UnitTestProject
         [TestMethod]
         public void SessionConectSuccess()
         {
-            sess.Connect(new User("joe", "joe"));
+            sess.Connect(new User("joe", "joe", "123"));
             Assert.IsNotNull(sess.Players);
         }
 
         [TestMethod]
         public void LeavingFromSessionTesting()
         {
-            User connectedUser = new User("joe", "joe");
+            User connectedUser = new User("joe", "joe", "123");
             sess.Connect(connectedUser);
             sess.Leave(connectedUser);
 

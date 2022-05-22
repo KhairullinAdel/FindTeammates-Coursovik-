@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace Finder_Core
 {
     public class Session
     {
-        public int ID { get; private set; }
+        [Required()]
         public User SessionHost { get; private set; }
         public List<User> Players { get; private set; }
+        [Required()]
         public int PlayerMaxCount { get; private set; }
         private bool StatusOfActivity { get; set; }
 

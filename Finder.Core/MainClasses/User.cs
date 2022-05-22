@@ -6,13 +6,17 @@ using System.Text.RegularExpressions;
 using Finder_Core.FireBase;
 using System.Security.Cryptography;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace Finder_Core
 {
     public class User
     {
-        public string Name { get; private set; }
+        [Required()]
         public string UserTag { get; private set; }
+        [Required()]
+        public string Name { get; private set; }
+        [Required()]
         public string Password { get; private set; }
         public int Level { get; private set; }
         public int XP { get; private set; }
@@ -24,10 +28,10 @@ namespace Finder_Core
 
         }
 
-        public User(string username, string email, string password)
+        public User(string username, string userTag, string password)
         {
             Name = username;
-            UserTag = email;
+            UserTag = userTag;
             Password = this.GetHash(password);
             Level = 0;
             Socials = new Dictionary<string, string>();

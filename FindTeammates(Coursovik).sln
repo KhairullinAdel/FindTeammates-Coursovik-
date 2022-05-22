@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finder_WPF", "Finder_WPF\Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "debugConsole", "debugConsole\debugConsole.csproj", "{1B5B0D0C-5D16-4898-9B84-14146825FC38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{0DB350AD-2427-400E-8021-2DA2519D25A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1B5B0D0C-5D16-4898-9B84-14146825FC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B5B0D0C-5D16-4898-9B84-14146825FC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B5B0D0C-5D16-4898-9B84-14146825FC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB350AD-2427-400E-8021-2DA2519D25A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB350AD-2427-400E-8021-2DA2519D25A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB350AD-2427-400E-8021-2DA2519D25A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB350AD-2427-400E-8021-2DA2519D25A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
