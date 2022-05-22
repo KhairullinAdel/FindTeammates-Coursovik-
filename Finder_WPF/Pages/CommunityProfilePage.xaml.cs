@@ -22,6 +22,7 @@ namespace Finder_WPF
     {
         private User user;
         private Community comm;
+        private List<Session> sesses;
         public CommunityProfilePage(User incomingUser, Community incomingComm)
         {
             InitializeComponent();
@@ -33,6 +34,12 @@ namespace Finder_WPF
                 labla.Visibility = Visibility.Visible;
                 CreateASession.Visibility = Visibility.Visible;
             }
+
+            CommunityName.Text = comm.Name;
+            UserCount.Text = comm.UsersCount.ToString();
+            sesses = comm.SessionList;
+
+            SessList.ItemsSource = sesses;
         }
 
         private void JoinToComm_Click(object sender, RoutedEventArgs e)

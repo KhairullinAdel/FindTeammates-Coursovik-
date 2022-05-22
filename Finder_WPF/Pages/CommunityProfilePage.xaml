@@ -36,9 +36,7 @@
                            VerticalAlignment="Center"
                            FontSize="20"/>
                 <TextBlock x:Name="UserCount"
-                           Text="Binding Level"/>
-                <TextBlock x:Name="ComDesc"
-                           Text="Description"/>
+                           Text="Binding count"/>
             </StackPanel>
             <StackPanel MinWidth="380"
                         VerticalAlignment="Center"
@@ -63,19 +61,19 @@
         <ListView x:Name="SessList"
                   Grid.Row="2"
                   Margin="20, 0"
-                  Background="Transparent"
-                  ItemsSource="{Binding Sesses}">
+                  Background="Transparent">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" 
-                                    DisplayMemberBinding="{Binding Name}"
+                    <GridViewColumn Header="Owner" 
+                                    DisplayMemberBinding="{Binding SessionHost.Name}"
                                     Width="150"/>
-                    <GridViewColumn Header="Owner"
-                                    DisplayMemberBinding="{Binding OwnerTag}"
-                                    Width="150"/>
-                    <GridViewColumn Header="Users Count"
-                                    DisplayMemberBinding="{Binding UsersCount}"
+                    <GridViewColumn Header="Users Max count"
+                                    DisplayMemberBinding="{Binding Players.Count}"
                                     Width="80"/>
+                    <GridViewColumn Header="Users Count"
+                                    DisplayMemberBinding="{Binding PlayerMaxCount}"
+                                    Width="80"/>
+                    
                 </GridView>
             </ListView.View>
         </ListView>
