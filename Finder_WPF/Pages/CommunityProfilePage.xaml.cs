@@ -39,11 +39,17 @@ namespace Finder_WPF
         {
             user.JoinToCommunity(comm);
             DataAccess.UserSave(user);
+            NavigationService.Navigate(new UserProfilePage(user));
         }
 
         private void CreateASession_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new SessionCreationPage(user, comm));
+        }
 
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

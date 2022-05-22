@@ -87,6 +87,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SessionCreationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SocialsAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +115,9 @@
     </Compile>
     <Compile Include="Pages\RegPage.xaml.cs">
       <DependentUpon>RegPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SessionCreationPage.xaml.cs">
+      <DependentUpon>SessionCreationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SocialsAddPage.xaml.cs">
       <DependentUpon>SocialsAddPage.xaml</DependentUpon>

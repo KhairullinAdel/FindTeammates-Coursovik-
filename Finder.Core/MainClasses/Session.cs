@@ -9,17 +9,22 @@ namespace Finder_Core
     {
         [Required()]
         public User SessionHost { get; private set; }
+        [Required()]
         public List<User> Players { get; private set; }
         [Required()]
         public int PlayerMaxCount { get; private set; }
         private bool StatusOfActivity { get; set; }
 
-        public Session(User host, int maxcount)
+        public Session()
+        {
+
+        }
+        public Session(User host, int maxcount, Community comm)
         {
             SessionHost = host;
             PlayerMaxCount = maxcount;
             Players = new List<User>();
-            StatusOfActivity = true;
+            Players.Add(SessionHost);
         }
 
         public void Connect(User player)
@@ -51,30 +56,6 @@ namespace Finder_Core
         private void SessionDisable()
         {
             StatusOfActivity = false;
-        }
-
-        public override string ToString()
-        {
-            if (!StatusOfActivity)
-            {
-                return "Room is already Disabled";
-            }
-            else
-            {
-                string mes = $"Session host: {SessionHost.Name};\n" +
-                             $"User max count: {PlayerMaxCount};\n" +
-                             $"Players: ";
-
-                foreach (var u in Players)
-                {
-                    mes += $"{u.Name}, ";
-                }
-
-                mes.Substring(mes.Length);
-
-                return String.Concat(mes, $";\n\n");
-            }
-
         }
 
 

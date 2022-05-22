@@ -27,7 +27,8 @@
                   Grid.Row="1"
                   Margin="20, 0"
                   Background="Transparent"
-                  ItemsSource="{Binding coms}">
+                  ItemsSource="{Binding coms}"
+                  SelectionChanged="GroupList_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" 

@@ -18,8 +18,19 @@
                     Height="100"
                     VerticalAlignment="Top"
                     Margin="20, 0">
+            
+
+
             <StackPanel VerticalAlignment="Center"
                         MinWidth="380">
+                <Button x:Name="GoBack"
+                        Content="Back"
+                        Height="20"
+                        Width="40"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="0, 5"
+                        Click="GoBack_Click"/>
                 <TextBlock x:Name="CommunityName" 
                            Text="Binding ComName"
                            VerticalAlignment="Center"

@@ -91,5 +91,19 @@ namespace Finder_Core.FireBase
         }
 
         #endregion
+
+        #region Sessions
+        public static List<Session> GetSessByComm(Community c)
+        {
+            List<Session> returned = new List<Session>();
+
+            foreach (var comm in c.SessionList)
+            {
+                returned.Add(comm);
+            }
+
+            return returned;
+        }
+        #endregion
     }
 }

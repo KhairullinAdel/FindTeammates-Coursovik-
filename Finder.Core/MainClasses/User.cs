@@ -25,7 +25,7 @@ namespace Finder_Core
 
         public User()
         {
-
+            Communities = new List<string>();
         }
 
         public User(string username, string userTag, string password)
@@ -62,6 +62,7 @@ namespace Finder_Core
                 Communities.Add(community.Name);
                 community.PlayerJoined();
             }
+            DataAccess.UserSave(this);
         }
     }
 }

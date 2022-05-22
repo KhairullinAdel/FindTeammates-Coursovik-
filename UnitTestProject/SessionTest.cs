@@ -16,7 +16,7 @@ namespace UnitTestProject
         public SessionTest()
         {
             host = new User("Bob", "SomeAdress", "123");
-            sess = new Session(host, 1);
+
         }
 
         [TestMethod]

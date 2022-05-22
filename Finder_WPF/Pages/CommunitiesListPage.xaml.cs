@@ -37,5 +37,12 @@ namespace Finder_WPF
         {
             NavigationService.GoBack();
         }
+
+        private void GroupList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NavigationService.Navigate(new CommunityProfilePage(
+                authorisedUser, GroupList.SelectedItem as Community));
+
+        }
     }
 }
