@@ -10,7 +10,7 @@ namespace Finder_Core
         [Required()]
         public User SessionHost { get; private set; }
         [Required()]
-        public List<User> Players { get; private set; }
+        public List<string> Players { get; private set; }
         [Required()]
         public int PlayerMaxCount { get; private set; }
         //private bool StatusOfActivity { get; set; }
@@ -25,8 +25,8 @@ namespace Finder_Core
         {
             SessionHost = host;
             PlayerMaxCount = maxcount;
-            Players = new List<User>();
-            Players.Add(SessionHost);
+            Players = new List<string>();
+            Players.Add(SessionHost.Name);
             CommunityOfCreation = comm.Name;
             comm.SessionList.Add(this);
         }
@@ -35,7 +35,7 @@ namespace Finder_Core
         {
             if (Players.Count < PlayerMaxCount)
             {
-                Players.Add(player);
+                Players.Add(player.Name);
             }
             else
             {
@@ -47,7 +47,7 @@ namespace Finder_Core
         {
             if (player != SessionHost)
             {
-                Players.Remove(player);
+                Players.Remove(player.Name);
             }
             else
             {

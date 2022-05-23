@@ -93,16 +93,12 @@ namespace Finder_Core.FireBase
         #endregion
 
         #region Sessions
-        public static List<Session> GetSessByComm(Community c)
+        public static void SessionSave(Session sess, Community comm)
         {
-            List<Session> returned = new List<Session>();
+            FirebaseResponse response = FBaseConfig.client.Update("Sessions/" + sess.SessionHost.Name, sess);
+            Session obj = response.ResultAs<Session>();
 
-            foreach (var comm in c.SessionList)
-            {
-                returned.Add(comm);
-            }
-
-            return returned;
+            DataAccess.CommumitySave(comm, DataAccess.GetUser(comm.OwnerTag));
         }
         #endregion
     }
