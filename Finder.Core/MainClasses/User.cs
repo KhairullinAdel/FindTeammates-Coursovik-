@@ -22,6 +22,7 @@ namespace Finder_Core
         public int XP { get; private set; }
         public Dictionary<string, string> Socials { get; private set; }
         public List<string> Communities { get; private set; }
+        public Session ActiveSession{ get; private set; }
 
         public User()
         {
@@ -36,6 +37,7 @@ namespace Finder_Core
             Level = 0;
             Socials = new Dictionary<string, string>();
             Communities = new List<string>();
+            ActiveSession = null;
         }
 
         public void AddSocials(string network, string username)
@@ -65,6 +67,18 @@ namespace Finder_Core
             DataAccess.UserSave(this);
             DataAccess.CommumitySave(community, 
                 DataAccess.GetUser(community.OwnerTag));
+        }
+
+        public void JoinToSession(Session session)
+        {
+            this.ActiveSession = session;
+            session.Connect(this);
+        }
+
+        public void LeaveFromSession()
+        {
+            ActiveSession.Leave(this);
+            this.ActiveSession = null;
         }
     }
 }

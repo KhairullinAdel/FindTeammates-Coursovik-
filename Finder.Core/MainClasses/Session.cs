@@ -13,7 +13,9 @@ namespace Finder_Core
         public List<User> Players { get; private set; }
         [Required()]
         public int PlayerMaxCount { get; private set; }
-        private bool StatusOfActivity { get; set; }
+        //private bool StatusOfActivity { get; set; }
+        [Required()]
+        public string CommunityOfCreation { get; private set; }
 
         public Session()
         {
@@ -25,12 +27,13 @@ namespace Finder_Core
             PlayerMaxCount = maxcount;
             Players = new List<User>();
             Players.Add(SessionHost);
+            CommunityOfCreation = comm.Name;
+            comm.SessionList.Add(this);
         }
 
         public void Connect(User player)
         {
-            if (Players.Count < PlayerMaxCount &&
-                StatusOfActivity == true)
+            if (Players.Count < PlayerMaxCount)
             {
                 Players.Add(player);
             }
@@ -48,14 +51,13 @@ namespace Finder_Core
             }
             else
             {
-                Players.Clear();
                 SessionDisable();
             }
         }
 
         private void SessionDisable()
         {
-            StatusOfActivity = false;
+            Players.Clear();
         }
 
 
