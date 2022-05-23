@@ -63,6 +63,8 @@ namespace Finder_Core
                 community.PlayerJoined();
             }
             DataAccess.UserSave(this);
+            DataAccess.CommumitySave(community, 
+                DataAccess.GetUser(community.OwnerTag));
         }
     }
 }

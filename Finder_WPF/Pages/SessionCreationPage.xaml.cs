@@ -55,12 +55,12 @@ namespace Finder_WPF
             Session sess = new Session(host, count, community);
             community.SessionList.Add(sess);
             DataAccess.CommumitySave(community, DataAccess.GetUser(community.OwnerTag));
-
+            NavigationService.Navigate(new CommunityProfilePage(host, community));
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new CommunityProfilePage(host, community));
         }
     }
 }

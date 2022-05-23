@@ -56,7 +56,7 @@ namespace Finder_WPF
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new UserProfilePage(user));
         }
     }
 }
