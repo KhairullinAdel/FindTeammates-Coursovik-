@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using Finder_Core.FireBase;
 
 namespace Finder_Core
 {
@@ -25,9 +26,8 @@ namespace Finder_Core
             SessionHost = host;
             PlayerMaxCount = maxcount;
             Players = new List<string>();
-            Players.Add(SessionHost.Name);
             CommunityOfCreation = comm.Name;
-            comm.SessionList.Add(this);
+            comm.SessionList.Add(this.SessionHost.UserTag);
             try
             {
                 host.JoinToSession(this);
@@ -44,7 +44,8 @@ namespace Finder_Core
             {
                 if (player.ActiveSession == null)
                 {
-                    Players.Add(player.Name);
+                    Players.Add(player.UserTag);
+
                 }
                 else
                 {
@@ -59,7 +60,7 @@ namespace Finder_Core
 
         public void Leave(User player)
         {
-            if (player != SessionHost)
+            if (player.UserTag != SessionHost.UserTag)
             {
                 Players.Remove(player.Name);
             }
@@ -71,7 +72,16 @@ namespace Finder_Core
 
         private void SessionDisable()
         {
-            Players.Clear();
+            foreach(var p in Players)
+            {
+                var deleted = DataAccess.GetUser(p);
+                deleted.UserActiveStatusSwitch();
+                DataAccess.UserSave(deleted);
+            }
+            var comm = DataAccess.GetCommunity(this.CommunityOfCreation);
+            comm.SessionList.Remove(this.SessionHost.UserTag);
+            DataAccess.CommumitySave(comm, DataAccess.GetUser(comm.OwnerTag));
+            DataAccess.SessionDelete(this);
         }
 
 

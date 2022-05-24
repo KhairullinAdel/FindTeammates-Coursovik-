@@ -90,8 +90,12 @@ namespace Finder_Core
             var session = DataAccess.GetSession(ActiveSession);
             var comm = DataAccess.GetCommunity(session.CommunityOfCreation);
             session.Leave(this);
+            this.UserActiveStatusSwitch();
+        }
+
+        public void UserActiveStatusSwitch()
+        {
             this.ActiveSession = null;
-            DataAccess.SessionSave(session, comm, this);
         }
     }
 }

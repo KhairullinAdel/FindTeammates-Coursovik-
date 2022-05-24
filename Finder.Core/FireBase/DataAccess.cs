@@ -103,6 +103,11 @@ namespace Finder_Core.FireBase
             DataAccess.UserSave(conectedUser);
         }
 
+        public static void SessionDelete(Session sess)
+        {
+            FirebaseResponse response = FBaseConfig.client.Delete("Sessions/" + sess.SessionHost.UserTag);
+        }
+
         public static Session GetSession(string name)
         {
             var response = FBaseConfig.client.Get("Sessions/" + name);

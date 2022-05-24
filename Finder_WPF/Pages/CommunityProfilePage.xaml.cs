@@ -46,7 +46,12 @@ namespace Finder_WPF
 
             CommunityName.Text = comm.Name;
             UserCount.Text = "Users count: " + comm.UsersCount.ToString();
-            sesses = comm.SessionList;
+            sesses = new List<Session>();
+
+            foreach (var s in comm.SessionList)
+            {
+                sesses.Add(DataAccess.GetSession(s));
+            }
 
             SessList.ItemsSource = sesses;
         }
@@ -88,7 +93,8 @@ namespace Finder_WPF
         private void SessLeaveButton_Click(object sender, RoutedEventArgs e)
         {
             user.LeaveFromSession();
-            NavigationService.Navigate(new CommunityProfilePage(user, comm));
+            NavigationService.Navigate(new CommunityProfilePage(user, 
+                DataAccess.GetCommunity(comm.Name)));
         }
     }
 }
