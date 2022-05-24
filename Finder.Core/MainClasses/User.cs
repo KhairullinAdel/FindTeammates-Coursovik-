@@ -22,7 +22,8 @@ namespace Finder_Core
         public int XP { get; private set; }
         public Dictionary<string, string> Socials { get; private set; }
         public List<string> Communities { get; private set; }
-        public Session ActiveSession{ get; private set; }
+        //public Session ActiveSession{ get; private set; }
+        public string ActiveSession{ get; private set; }
 
         public User()
         {
@@ -71,14 +72,14 @@ namespace Finder_Core
 
         public void JoinToSession(Session session)
         {
-            this.ActiveSession = session;
+            this.ActiveSession = session.SessionHost.UserTag;
             session.Connect(this);
         }
 
-        public void LeaveFromSession()
-        {
-            ActiveSession.Leave(this);
-            this.ActiveSession = null;
-        }
+        //public void LeaveFromSession()
+        //{
+        //    ActiveSession.Leave(this);
+        //    this.ActiveSession = null;
+        //}
     }
 }

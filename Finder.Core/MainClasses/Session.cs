@@ -13,7 +13,6 @@ namespace Finder_Core
         public List<string> Players { get; private set; }
         [Required()]
         public int PlayerMaxCount { get; private set; }
-        //private bool StatusOfActivity { get; set; }
         [Required()]
         public string CommunityOfCreation { get; private set; }
 
@@ -29,6 +28,7 @@ namespace Finder_Core
             Players.Add(SessionHost.Name);
             CommunityOfCreation = comm.Name;
             comm.SessionList.Add(this);
+            host.JoinToSession(this);
         }
 
         public void Connect(User player)

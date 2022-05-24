@@ -53,7 +53,6 @@ namespace Finder_WPF
         private void RegButton_Click(object sender, RoutedEventArgs e)
         {
             Session sess = new Session(host, count, community);
-            community.SessionList.Add(sess);
             DataAccess.CommumitySave(community, DataAccess.GetUser(community.OwnerTag));
             NavigationService.Navigate(new CommunityProfilePage(host, community));
         }
