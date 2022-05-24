@@ -72,14 +72,26 @@ namespace Finder_Core
 
         public void JoinToSession(Session session)
         {
-            this.ActiveSession = session.SessionHost.UserTag;
-            session.Connect(this);
+            Community comm = DataAccess.GetCommunity(session.CommunityOfCreation);
+            try
+            {
+                session.Connect(this);
+                this.ActiveSession = session.SessionHost.UserTag;
+                DataAccess.SessionSave(session, comm, this);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-        //public void LeaveFromSession()
-        //{
-        //    ActiveSession.Leave(this);
-        //    this.ActiveSession = null;
-        //}
+        public void LeaveFromSession()
+        {
+            var session = DataAccess.GetSession(ActiveSession);
+            var comm = DataAccess.GetCommunity(session.CommunityOfCreation);
+            session.Leave(this);
+            this.ActiveSession = null;
+            DataAccess.SessionSave(session, comm, this);
+        }
     }
 }

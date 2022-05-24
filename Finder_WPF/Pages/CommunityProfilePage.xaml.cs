@@ -39,11 +39,13 @@ namespace Finder_WPF
             if (user.ActiveSession != null)
             {
                 actualSession = DataAccess.GetSession(user.ActiveSession);
-
+                SessionPanel.Visibility = Visibility.Visible;
+                HostNameLabel.Content += actualSession.SessionHost.Name;
+                HostContactsLabel.Content += actualSession.SessionHost.Socials.Values.ToString();
             }
 
             CommunityName.Text = comm.Name;
-            UserCount.Text = comm.UsersCount.ToString();
+            UserCount.Text = "Users count: " + comm.UsersCount.ToString();
             sesses = comm.SessionList;
 
             SessList.ItemsSource = sesses;
@@ -58,12 +60,35 @@ namespace Finder_WPF
 
         private void CreateASession_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new SessionCreationPage(user, comm));
+            if (actualSession == null)
+            {
+                NavigationService.Navigate(new SessionCreationPage(user, comm));
+
+            }
+            else
+            {
+                MessageBox.Show("You are in a session already");
+            }
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new UserProfilePage(user));
+        }
+
+        private void SessList_Selected(object sender, RoutedEventArgs e)
+        {
+            if (actualSession == null)
+            {
+                user.JoinToSession(SessList.SelectedItem as Session);
+                NavigationService.Navigate(new CommunityProfilePage(user, comm));
+            }
+        }
+
+        private void SessLeaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            user.LeaveFromSession();
+            NavigationService.Navigate(new CommunityProfilePage(user, comm));
         }
     }
 }

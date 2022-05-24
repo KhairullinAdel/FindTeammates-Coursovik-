@@ -52,9 +52,18 @@ namespace Finder_WPF
 
         private void RegButton_Click(object sender, RoutedEventArgs e)
         {
-            Session sess = new Session(host, count, community);
-            DataAccess.CommumitySave(community, DataAccess.GetUser(community.OwnerTag));
-            NavigationService.Navigate(new CommunityProfilePage(host, community));
+            try
+            {
+                Session sess = new Session(host, count, community);
+                DataAccess.CommumitySave(community, DataAccess.GetUser(community.OwnerTag));
+                NavigationService.Navigate(new CommunityProfilePage(host, community));
+            }
+            catch
+            {
+                MessageBox.Show("You are already in a session");
+                NavigationService.GoBack();
+            }
+            
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

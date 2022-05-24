@@ -22,7 +22,7 @@
 
 
             <StackPanel VerticalAlignment="Center"
-                        MinWidth="380">
+                        MinWidth="180">
                 <Button x:Name="GoBack"
                         Content="Back"
                         Height="20"
@@ -38,7 +38,25 @@
                 <TextBlock x:Name="UserCount"
                            Text="Binding count"/>
             </StackPanel>
-            <StackPanel MinWidth="380"
+            <StackPanel x:Name="SessionPanel"
+                        Width="250"
+                        VerticalAlignment="Center"
+                        Visibility="Hidden">
+                <Label Content="Your active session:"
+                       Padding="0"
+                       FontSize="20"/>
+                <Label x:Name="HostNameLabel"
+                       Content="Session Host name: "
+                       Padding="0"/>
+                <Label x:Name="HostContactsLabel"
+                       Content="Session Host contacts: " 
+                       Padding="0"/>
+                <Button Content="Leave from active session"
+                        x:Name="SessLeaveButton"
+                        Click="SessLeaveButton_Click"
+                        Margin="0, 3"/>
+            </StackPanel>
+            <StackPanel MinWidth="330"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right">
                 <Button x:Name="JoinToComm"
@@ -61,16 +79,17 @@
         <ListView x:Name="SessList"
                   Grid.Row="2"
                   Margin="20, 0"
-                  Background="Transparent">
+                  Background="Transparent"
+                  SelectionChanged="SessList_Selected">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Owner" 
                                     DisplayMemberBinding="{Binding SessionHost.Name}"
                                     Width="150"/>
-                    <GridViewColumn Header="Users Max count"
+                    <GridViewColumn Header="Users count"
                                     DisplayMemberBinding="{Binding Players.Count}"
                                     Width="80"/>
-                    <GridViewColumn Header="Users Count"
+                    <GridViewColumn Header="Users max Count"
                                     DisplayMemberBinding="{Binding PlayerMaxCount}"
                                     Width="80"/>
                     

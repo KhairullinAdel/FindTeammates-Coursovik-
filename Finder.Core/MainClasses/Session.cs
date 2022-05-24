@@ -28,14 +28,28 @@ namespace Finder_Core
             Players.Add(SessionHost.Name);
             CommunityOfCreation = comm.Name;
             comm.SessionList.Add(this);
-            host.JoinToSession(this);
+            try
+            {
+                host.JoinToSession(this);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void Connect(User player)
         {
             if (Players.Count < PlayerMaxCount)
             {
-                Players.Add(player.Name);
+                if (player.ActiveSession == null)
+                {
+                    Players.Add(player.Name);
+                }
+                else
+                {
+                    throw new Exception("You are already in a session");
+                }
             }
             else
             {
