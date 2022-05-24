@@ -23,6 +23,7 @@ namespace Finder_WPF
         private User user;
         private Community comm;
         private List<Session> sesses;
+        private Session actualSession;
         public CommunityProfilePage(User incomingUser, Community incomingComm)
         {
             InitializeComponent();
@@ -33,6 +34,12 @@ namespace Finder_WPF
                 JoinToComm.Visibility = Visibility.Hidden;
                 labla.Visibility = Visibility.Visible;
                 CreateASession.Visibility = Visibility.Visible;
+            }
+
+            if (user.ActiveSession != null)
+            {
+                actualSession = DataAccess.GetSession(user.ActiveSession);
+
             }
 
             CommunityName.Text = comm.Name;

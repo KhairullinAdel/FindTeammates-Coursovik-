@@ -102,6 +102,13 @@ namespace Finder_Core.FireBase
             DataAccess.CommumitySave(comm, DataAccess.GetUser(comm.OwnerTag));
             DataAccess.UserSave(conectedUser);
         }
+
+        public static Session GetSession(string name)
+        {
+            var response = FBaseConfig.client.Get("Sessions/" + name);
+            var obj = response.ResultAs<Session>();
+            return obj;
+        }
         #endregion
     }
 }
