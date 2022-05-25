@@ -18,6 +18,5 @@ namespace Api.Controllers
         {
             return DataAccess.GetCommunities();
         }
-        
     }
 }
