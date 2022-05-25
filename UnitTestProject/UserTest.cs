@@ -23,7 +23,7 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void UserSocialsAdditionSuccess()
+        public void UserGetSocialsTesting()
         {
             user.AddSocials("Discord", "ObjectiveGood#9925");
 
@@ -32,6 +32,27 @@ namespace UnitTestProject
             tempdict.Add("Discord", "ObjectiveGood#9925");
 
             CollectionAssert.AreEqual(user.GetSocials(), tempdict);
+        }
+
+        [TestMethod]
+        public void UserAddToSocialsTesting()
+        {
+            user.AddSocials("Telegram", "abcdefg");
+            user.AddSocials("Discord", "@ABCDEFG");
+
+            Assert.AreEqual(user.Socials.Keys.Count, 2);
+        }
+
+        [TestMethod]
+        public void UserPasswordHashingTesting()
+        {
+            string name = "DefaultName";
+            string tag = "defaulttag";
+            string pass = "defaultOPass";
+
+            user = new User(name, tag, pass);
+
+            Assert.AreNotEqual(user.Password, pass);
         }
     }
 }

@@ -30,7 +30,6 @@ namespace Finder_WPF
             InitializeComponent();
 
             Username.Text = user.Name;
-            UserLevel.Text = user.Level.ToString();
             UserXP.Text = user.XP.ToString();
 
             coms = DataAccess.GetCommByUser(user);

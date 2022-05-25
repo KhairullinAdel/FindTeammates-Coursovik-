@@ -18,11 +18,9 @@ namespace Finder_Core
         public string Name { get; private set; }
         [Required()]
         public string Password { get; private set; }
-        public int Level { get; private set; }
         public int XP { get; private set; }
         public Dictionary<string, string> Socials { get; private set; }
         public List<string> Communities { get; private set; }
-        //public Session ActiveSession{ get; private set; }
         public string ActiveSession{ get; private set; }
 
         public User()
@@ -35,7 +33,6 @@ namespace Finder_Core
             Name = username;
             UserTag = userTag;
             Password = this.GetHash(password);
-            Level = 0;
             Socials = new Dictionary<string, string>();
             Communities = new List<string>();
             ActiveSession = null;
@@ -96,6 +93,11 @@ namespace Finder_Core
         public void UserActiveStatusSwitch()
         {
             this.ActiveSession = null;
+        }
+
+        public void GainExpirience()
+        {
+            this.XP += 150;
         }
     }
 }

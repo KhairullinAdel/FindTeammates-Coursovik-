@@ -9,46 +9,21 @@ namespace UnitTestProject
     [TestClass]
     public class SessionTest
     {
-        Session sess;
         User host;
+        Community comm;
 
         //TestClass constructor
         public SessionTest()
         {
             host = new User("Bob", "SomeAdress", "123");
-
+            comm = new Community("WarFolomeus", host);
         }
 
         [TestMethod]
-        public void SessionCreationSuccess()
+        public void SessionCreationTest()
         {
-            Assert.IsNotNull(sess);
+            Session testSession = new Session(host, 3, comm);
+            Assert.IsNotNull(testSession);
         }
-
-        [TestMethod]
-        public void SessionConectSuccess()
-        {
-            sess.Connect(new User("joe", "joe", "123"));
-            Assert.IsNotNull(sess.Players);
-        }
-
-        [TestMethod]
-        public void LeavingFromSessionTesting()
-        {
-            User connectedUser = new User("joe", "joe", "123");
-            sess.Connect(connectedUser);
-            sess.Leave(connectedUser);
-
-            Assert.AreEqual(sess.Players.Count, 0);
-        }
-
-        [TestMethod]
-        public void HostIsLeavingFromSessionTest()
-        {
-            sess.Leave(host);
-
-            Assert.AreEqual(sess.ToString(), "Room is already Disabled");
-        }
-
     }
 }
