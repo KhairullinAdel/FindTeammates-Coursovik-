@@ -13,13 +13,28 @@ namespace Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpPut("{user}, {comm}")]
-        public void JoinToComm(string u, string c)
-        {
-            var comm = DataAccess.GetCommunity(c);
-            var user = DataAccess.GetUser(u);
+        public User loggedUser { get; private set; }
 
-            user.JoinToCommunity(comm);
-        }
+        [HttpGet()]
+        public string Authorise(string userTag, string password)
+        {
+            try
+            {
+                var user = DataAccess.GetUser(userTag);
+                if (user.Password == user.GetHash(password))
+                {
+                    loggedUser = user;
+                    return "Success";
+                }
+                else
+                {
+                    return "Incorrect";
+                }
+            }
+            catch
+            {
+                return "There is no user with this tag";
+            }
+        }     
     }
 }

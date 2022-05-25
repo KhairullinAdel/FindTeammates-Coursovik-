@@ -15,7 +15,6 @@ namespace Finder_Core
         public int UsersCount { get; private set; }
         public List<string> SessionList { get; private set; }
 
-
         public Community()
         {
             SessionList = new List<string>();
