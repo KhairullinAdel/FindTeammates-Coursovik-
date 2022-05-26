@@ -41,7 +41,7 @@ namespace Api.Controllers
         {
             this.Authorise(userTag, password);
 
-            if(loggedUser != null)
+            if (loggedUser != null)
             {
                 Community comm = new Community(name, loggedUser);
                 DataAccess.CommumitySave(comm, loggedUser);
@@ -52,7 +52,7 @@ namespace Api.Controllers
             {
                 return Content("Invalid user data");
             }
-            
+
         }
 
         [HttpPost("sesionCreate")]
@@ -74,7 +74,7 @@ namespace Api.Controllers
                 catch
                 {
                     return Content("You are already in a session");
-                } 
+                }
             }
             else
             {
@@ -98,6 +98,36 @@ namespace Api.Controllers
                     else
                     {
                         return Content("You are not a sessionHost");
+                    }
+                }
+                else
+                {
+                    return Content("You have no any active session");
+                }
+            }
+            else
+            {
+                return Content("Incorrect user data");
+            }
+        }
+
+        [HttpPut("LeaveFromSession")]
+        public IActionResult LeaveFromSession(string userTag, string password)
+        {
+            this.Authorise(userTag, password);
+
+            if (loggedUser != null)
+            {
+                if (loggedUser.ActiveSession != null)
+                {
+                    loggedUser.LeaveFromSession();
+                    if (loggedUser.ActiveSession != loggedUser.UserTag)
+                    {
+                        return Content("Leaved");
+                    }
+                    else
+                    {
+                        return Content("You are a sessionHost. Session will be deleted");
                     }
                 }
                 else
