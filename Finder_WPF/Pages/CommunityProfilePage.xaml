@@ -18,9 +18,6 @@
                     Height="100"
                     VerticalAlignment="Top"
                     Margin="20, 0">
-            
-
-
             <StackPanel VerticalAlignment="Center"
                         MinWidth="180">
                 <Button x:Name="GoBack"

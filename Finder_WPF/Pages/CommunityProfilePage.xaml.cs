@@ -31,7 +31,7 @@ namespace Finder_WPF
                 actualSession = DataAccess.GetSession(user.ActiveSession);
                 SessionPanel.Visibility = Visibility.Visible;
                 HostNameLabel.Content += actualSession.SessionHost.Name;
-                HostContactsLabel.Content += actualSession.SessionHost.Socials.Values.ToString();
+                HostContactsLabel.Content += actualSession.SessionHost.GetSocials()[0];
             }
 
             CommunityName.Text = comm.Name;

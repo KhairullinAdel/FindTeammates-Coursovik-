@@ -26,9 +26,9 @@ namespace UnitTestProject
         {
             user.AddSocials("Discord", "ObjectiveGood#9925");
 
-            Dictionary<string, string> tempdict = 
-                new Dictionary<string, string>();
-            tempdict.Add("Discord", "ObjectiveGood#9925");
+            List<string> tempdict = 
+                new List<string>();
+            tempdict.Add("Discord: ObjectiveGood#9925");
 
             CollectionAssert.AreEqual(user.GetSocials(), tempdict);
         }

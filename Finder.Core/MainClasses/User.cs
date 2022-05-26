@@ -41,9 +41,14 @@ namespace Finder_Core
             Socials.Add(network, username);
         }
 
-        public Dictionary<string, string> GetSocials()
+        public List<string> GetSocials()
         {
-            return this.Socials;
+            List<string> returned = new List<string>();
+            foreach (var key in this.Socials.Keys)
+            {
+                returned.Add($"{key}: {Socials[key]}");
+            }
+            return returned;
         }
 
         public string GetHash(string input)
