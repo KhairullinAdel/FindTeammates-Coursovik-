@@ -114,6 +114,18 @@ namespace Finder_Core.FireBase
             var obj = response.ResultAs<Session>();
             return obj;
         }
+
+        public static List<string> GetActiveSesionHosts()
+        {
+            var response = FBaseConfig.client.Get("Sessions/");
+            Dictionary<string, Session> obj =
+                JsonConvert.DeserializeObject<Dictionary<string, Session>>
+                (response.Body.ToString());
+
+            List<string> returned = obj.Keys.ToList();
+
+            return returned;
+        }
         #endregion
     }
 }
