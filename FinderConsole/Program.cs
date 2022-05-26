@@ -18,6 +18,14 @@ namespace FinderConsole
                     trigger = false;
                 }
             }
+            Console.WriteLine("\nAuthorisation is success");
+
+            trigger = true;
+
+            while (trigger == true)
+            {
+                trigger = MessageShower.ChooseAfterAuth(user);
+            }
 
         }
     }
