@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-using Finder_Core;
 using Finder_Core.FireBase;
 
 namespace Api.Controllers

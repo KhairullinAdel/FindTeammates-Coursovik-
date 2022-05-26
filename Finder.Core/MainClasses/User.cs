@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 
 using Finder_Core.FireBase;
 using System.Security.Cryptography;

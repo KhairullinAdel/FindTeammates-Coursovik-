@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
+
 using Finder_Core.FireBase;
 
 namespace Finder_Core

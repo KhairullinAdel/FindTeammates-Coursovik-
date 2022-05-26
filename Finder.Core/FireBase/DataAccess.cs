@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using FireSharp.Config;
-using FireSharp.Interfaces;
 using FireSharp.Response;
 using Newtonsoft.Json;
 
@@ -105,7 +99,8 @@ namespace Finder_Core.FireBase
 
         public static void SessionDelete(Session sess)
         {
-            FirebaseResponse response = FBaseConfig.client.Delete("Sessions/" + sess.SessionHost.UserTag);
+            FirebaseResponse response = FBaseConfig.client.Delete("Sessions/" + 
+                sess.SessionHost.UserTag);
         }
 
         public static Session GetSession(string name)
