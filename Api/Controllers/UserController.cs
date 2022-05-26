@@ -55,7 +55,7 @@ namespace Api.Controllers
             
         }
 
-        [HttpPost("sesionInAcommCreate")]
+        [HttpPost("sesionCreate")]
         public IActionResult CreateSession(string userTag, string password, string comm, int count)
         {
             this.Authorise(userTag, password);
@@ -79,6 +79,35 @@ namespace Api.Controllers
             else
             {
                 return Content("Invalid user data");
+            }
+        }
+
+        [HttpDelete("sessionDelete")]
+        public IActionResult DeleteSession(string userTag, string password)
+        {
+            this.Authorise(userTag, password);
+            if (loggedUser != null)
+            {
+                if (loggedUser.ActiveSession != null)
+                {
+                    if (loggedUser.ActiveSession == loggedUser.UserTag)
+                    {
+                        loggedUser.LeaveFromSession();
+                        return Content("Session has been deleted successfuly");
+                    }
+                    else
+                    {
+                        return Content("You are not a sessionHost");
+                    }
+                }
+                else
+                {
+                    return Content("You have no any active session");
+                }
+            }
+            else
+            {
+                return Content("Incorrect user data");
             }
         }
     }
