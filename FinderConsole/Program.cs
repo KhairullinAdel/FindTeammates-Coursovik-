@@ -1,5 +1,6 @@
 ﻿using System;
 using Finder_Core;
+using System.Threading;
 
 namespace FinderConsole
 {
@@ -27,6 +28,8 @@ namespace FinderConsole
                 trigger = MessageShower.ChooseAfterAuth(user);
             }
 
+            Console.WriteLine("See you soon!");
+            Thread.Sleep(300);
         }
     }
 }

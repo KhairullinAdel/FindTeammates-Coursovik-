@@ -21,9 +21,9 @@ namespace FinderConsole
                               "2) Authorisation");
 
             var command = Console.ReadLine();
-            
 
-            switch(command)
+
+            switch (command)
             {
                 case "1":
                     user = RegistrateUser(user);
@@ -73,12 +73,12 @@ namespace FinderConsole
             var command = Console.ReadLine();
             var social = "";
 
-            switch(command)
+            switch (command)
             {
                 case "1":
                     Console.WriteLine("Please, enter your username in Telegram");
                     social = Console.ReadLine();
-                    while(social == "")
+                    while (social == "")
                     {
                         Console.WriteLine("Please, enter your username in Telegram");
                         social = Console.ReadLine();
@@ -97,7 +97,7 @@ namespace FinderConsole
                     user.AddSocials("Discord", social);
                     break;
             }
-                                            
+
         }
         #endregion
         #region auth
@@ -110,7 +110,7 @@ namespace FinderConsole
             Console.WriteLine("Enter your User tag");
             string tag = Console.ReadLine();
 
-            while(!userList.ContainsKey(tag))
+            while (!userList.ContainsKey(tag))
             {
                 Console.WriteLine("\nThere is no user with this tag. Try again please");
                 tag = Console.ReadLine();
@@ -138,12 +138,12 @@ namespace FinderConsole
                               "2) Leave from active session\n" +
                               "3) Show communities that have been joined\n" +
                               "4) Show all of exsiting communities\n" +
-                              "5) Open community page" +
+                              "5) Open community page\n" +
                               "6) Log out");
 
             string command = Console.ReadLine();
 
-            switch(command)
+            switch (command)
             {
                 case "1":
                     CheckAnActiveSession(user);
@@ -152,16 +152,20 @@ namespace FinderConsole
                     LeaveFromActiveSession(user);
                     return true;
                 case "3":
+                    ShowUsersCommunities(user);
                     return true;
                 case "4":
+                    ShowAllCommunities();
                     return true;
                 case "5":
+                    OpenCommunityPage(user);
                     return true;
                 case "6":
-                    return true;
-                default:
                     return false;
-                
+                default:
+                    Console.WriteLine("Unknown command");
+                    return true;
+
             }
         }
 
@@ -189,6 +193,189 @@ namespace FinderConsole
             {
                 Console.WriteLine("You cannot leave the session.\n" +
                                   "You are not a member of any session");
+            }
+        }
+
+        public static void ShowUsersCommunities(User user)
+        {
+            int i = 1;
+            Console.WriteLine("Your communities:\n");
+            foreach (var c in user.Communities)
+            {
+                Console.Write($"{i}) {c}\n");
+                i++;
+            }
+            Console.WriteLine();
+        }
+
+        public static void ShowAllCommunities()
+        {
+            List<Community> allComm = DataAccess.GetCommunities();
+            int i = 1;
+            Console.WriteLine("All communities:\n");
+            foreach (var c in allComm)
+            {
+                Console.Write($"{i}) {c.Name}\n");
+                i++;
+            }
+            Console.WriteLine();
+        }
+
+        public static void OpenCommunityPage(User user)
+        {
+            bool trigger = true;
+            string command = "";
+
+            Console.WriteLine("Please, wait...\n");
+            List<Community> allComm = DataAccess.GetCommunities();
+            List<string> allCommNames = new List<string>();
+            foreach (var comm in allComm)
+            {
+                allCommNames.Add(comm.Name);
+            }
+            Console.WriteLine("Enter the community name or" +
+                " \"goback\" if you want to go back");
+            while (trigger)
+            {
+                command = Console.ReadLine();
+                if (allCommNames.Contains(command))
+                {
+                    trigger = false;
+                    trigger = CommunityPageOpening(user, command);
+                }
+                else if (command == "goback")
+                {
+                    trigger = false;
+                }
+                else
+                {
+                    Console.WriteLine("\nThere is no commnity" +
+                        " with this name, try again");
+
+                }
+
+            }
+
+        }
+        #endregion
+
+        #region inside the community
+        public static bool CommunityPageOpening(User user, string commName)
+        {
+            bool isJoined = false;
+            bool trigger = true;
+            string command = "";
+
+            Community comm = DataAccess.GetCommunity(commName);
+            if (user.Communities.Contains(commName))
+            {
+                isJoined = true;
+            }
+
+            Console.WriteLine($"\nCommunity: {comm.Name}\n" +
+                              $"Community creator: {comm.OwnerTag}\n" +
+                              $"You are joined: {isJoined}\n");
+            while (trigger)
+            {
+                Console.WriteLine("1) Create a session\n" +
+                                  "2) Join a session\n" +
+                                  "3) Check active sessions\n" +
+                                  "4) Joit a community\n" +
+                                  "5) Go back\n");
+
+                command = Console.ReadLine();
+
+                switch (command)
+                {
+                    case "1":
+                        CreateASession(user, comm);
+                        break;
+                    case "2":
+                        JoinAsession(user, comm);
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                    case "5":
+                        trigger = false;
+                        break;
+                    default:
+                        Console.WriteLine("Unknown command\n");
+                        break;
+                }
+            }
+            return trigger;
+
+        }
+
+        public static void CreateASession(User user, Community comm)
+        {
+            string command = "";
+            bool trigger = true;
+            if (user.Communities.Contains(comm.Name))
+            {
+                if (user.ActiveSession == null)
+                {
+                    Console.WriteLine("For how many players you want " +
+                        "to create a session?");
+                    while (trigger)
+                    {
+                        command = Console.ReadLine();
+                        try
+                        {
+                            if (Convert.ToInt32(command) <= 1)
+                            {
+                                Console.WriteLine("Please, choose another count\n");
+                            }
+                            else
+                            {
+                                Session sess = new Session(user,
+                                    Convert.ToInt32(command), comm);
+                                DataAccess.SessionSave(sess, comm, user);
+                                trigger = false;
+                            }
+                        }
+                        catch
+                        {
+                            Console.WriteLine("unknown input\n");
+                        }
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You are in a session already\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You have to join to community before you " +
+                    "can create a session\n");
+            }
+        } 
+        public static void JoinAsession(User user, Community comm)
+        {
+            string command = "";
+            if (user.ActiveSession == null)
+            {
+                Console.WriteLine("Enter the session ownerTag if " +
+                    "you want to connect");
+                command = Console.ReadLine();
+                if (comm.SessionList.Contains(command))
+                {
+                    user.JoinToSession(DataAccess.GetSession(command));
+                    Console.WriteLine("Successfuly joined");
+                }
+                else
+                {
+                    Console.WriteLine("There is no session that has" +
+                        " been created by this user");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You are already in a session");
             }
         }
         #endregion
