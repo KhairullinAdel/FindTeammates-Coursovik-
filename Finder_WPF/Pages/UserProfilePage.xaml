@@ -24,8 +24,6 @@
                            Text="Binding Username"
                            VerticalAlignment="Center"
                            FontSize="20"/>
-                <TextBlock x:Name="UserLevel"
-                           Text="Binding Level"/>
                 <TextBlock x:Name="UserXP"
                            Text="Binding XP"/>
             </StackPanel>
