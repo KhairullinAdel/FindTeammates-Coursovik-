@@ -10,6 +10,8 @@ namespace FinderConsole
         static bool trigger = true;
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Cyan;
             MessageShower.PrintEnterTheCommand();
             while (trigger == true)
             {
@@ -29,7 +31,7 @@ namespace FinderConsole
             }
 
             Console.WriteLine("See you soon!");
-            Thread.Sleep(300);
+            Thread.Sleep(500);
         }
     }
 }
