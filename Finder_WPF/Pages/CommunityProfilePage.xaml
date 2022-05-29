@@ -77,7 +77,8 @@
                   Grid.Row="2"
                   Margin="20, 0"
                   Background="Transparent"
-                  SelectionChanged="SessList_Selected">
+                  SelectionChanged="SessList_Selected"
+                  FontSize="20">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Owner" 

@@ -23,21 +23,23 @@
                    Grid.Row="1"
                    HorizontalAlignment="Right"
                    FontSize="28"
-                   VerticalAlignment="Bottom"
+                   VerticalAlignment="bottom"
                    Margin="10, 20">
         </TextBlock>
         <TextBox Grid.Column="1"
                  Margin="10, 75, 40, 20"
                  x:Name="CommName"
                  Grid.Row="1"
-                 FontSize="20">
+                 FontSize="24"
+                 VerticalAlignment="bottom"
+                 VerticalContentAlignment="Center">
         </TextBox>
 
         <Button Grid.Row="2"
-                Margin="200, 10, 200, 85"
+                Margin="220, 20, 220, 95"
                 Grid.ColumnSpan="2"
                 Content="Create community"
-                FontSize="20"
+                FontSize="24"
                 x:Name="RegButton"
                 Click="RegButton_Click">
         </Button>

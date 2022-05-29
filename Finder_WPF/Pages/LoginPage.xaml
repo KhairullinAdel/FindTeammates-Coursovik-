@@ -34,6 +34,8 @@
         
         <TextBox Grid.Row="1" 
                  Margin="10"
+                 FontSize="40"
+                 VerticalContentAlignment="Center"
                  Grid.Column="1"
                  x:Name="LoginBox"/>
 
@@ -46,6 +48,8 @@
         <PasswordBox Grid.Row="2"
                  Margin="10"
                  Grid.Column="1"
+                 FontSize="40"
+                 VerticalContentAlignment="Center"
                  x:Name="UserPasswordBox"/>
 
         <Button Grid.Row="3"

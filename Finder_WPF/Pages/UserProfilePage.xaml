@@ -23,9 +23,7 @@
                 <TextBlock x:Name="Username" 
                            Text="Binding Username"
                            VerticalAlignment="Center"
-                           FontSize="20"/>
-                <TextBlock x:Name="UserXP"
-                           Text="Binding XP"/>
+                           FontSize="25"/>
             </StackPanel>
             <StackPanel MinWidth="380"
                         VerticalAlignment="Center"
@@ -48,18 +46,19 @@
                   Margin="20, 0"
                   Background="Transparent"
                   ItemsSource="{Binding coms}"
-                  SelectionChanged="GroupList_SelectionChanged">
+                  SelectionChanged="GroupList_SelectionChanged"
+                  FontSize="20">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" 
                                     DisplayMemberBinding="{Binding Name}"
-                                    Width="150"/>
+                                    Width="250"/>
                     <GridViewColumn Header="Owner"
                                     DisplayMemberBinding="{Binding OwnerTag}"
                                     Width="150"/>
                     <GridViewColumn Header="Users Count"
                                     DisplayMemberBinding="{Binding UsersCount}"
-                                    Width="80"/>
+                                    Width="150"/>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -75,8 +75,16 @@ namespace Finder_WPF
         {
             if (actualSession == null)
             {
-                user.JoinToSession(SessList.SelectedItem as Session);
-                NavigationService.Navigate(new CommunityProfilePage(user, comm));
+                try
+                {
+                    user.JoinToSession(SessList.SelectedItem as Session);
+                    NavigationService.Navigate(new CommunityProfilePage(user, comm));
+                }
+                catch
+                {
+                    MessageBox.Show("You cannot join this sesion");
+                }
+                
             }
         }
 

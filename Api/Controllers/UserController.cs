@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 using Finder_Core;
 using Finder_Core.FireBase;
 
